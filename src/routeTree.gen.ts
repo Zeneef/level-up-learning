@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CreateCourseRouteImport } from './routes/create-course'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as MyCoursesRouteImport } from './routes/my-courses'
 import { Route as TeachRouteImport } from './routes/teach'
@@ -18,6 +19,8 @@ import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CreatorsIndexRouteImport } from './routes/creators.index'
 import { Route as CreatorsUsernameRouteImport } from './routes/creators.$username'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardEarningsRouteImport } from './routes/dashboard.earnings'
 import { Route as GamesIndexRouteImport } from './routes/games.index'
 import { Route as GamesGameRouteImport } from './routes/games.$game'
 import { Route as CoursesGameSlugRouteImport } from './routes/courses.$game.$slug'
@@ -26,6 +29,11 @@ import { Route as LearnCourseLessonRouteImport } from './routes/learn.$course.$l
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateCourseRoute = CreateCourseRouteImport.update({
+  id: '/create-course',
+  path: '/create-course',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiscoverRoute = DiscoverRouteImport.update({
@@ -68,6 +76,16 @@ const CreatorsUsernameRoute = CreatorsUsernameRouteImport.update({
   path: '/creators/$username',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardEarningsRoute = DashboardEarningsRouteImport.update({
+  id: '/dashboard/earnings',
+  path: '/dashboard/earnings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GamesIndexRoute = GamesIndexRouteImport.update({
   id: '/games/',
   path: '/games/',
@@ -91,30 +109,36 @@ const LearnCourseLessonRoute = LearnCourseLessonRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/create-course': typeof CreateCourseRoute
   '/discover': typeof DiscoverRoute
   '/my-courses': typeof MyCoursesRoute
   '/teach': typeof TeachRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/creators/$username': typeof CreatorsUsernameRoute
+  '/dashboard/earnings': typeof DashboardEarningsRoute
   '/games/$game': typeof GamesGameRoute
   '/categories/': typeof CategoriesIndexRoute
   '/courses/': typeof CoursesIndexRoute
   '/creators/': typeof CreatorsIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/games/': typeof GamesIndexRoute
   '/courses/$game/$slug': typeof CoursesGameSlugRoute
   '/learn/$course/$lesson': typeof LearnCourseLessonRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/create-course': typeof CreateCourseRoute
   '/discover': typeof DiscoverRoute
   '/my-courses': typeof MyCoursesRoute
   '/teach': typeof TeachRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/creators/$username': typeof CreatorsUsernameRoute
+  '/dashboard/earnings': typeof DashboardEarningsRoute
   '/games/$game': typeof GamesGameRoute
   '/categories': typeof CategoriesIndexRoute
   '/courses': typeof CoursesIndexRoute
   '/creators': typeof CreatorsIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/games': typeof GamesIndexRoute
   '/courses/$game/$slug': typeof CoursesGameSlugRoute
   '/learn/$course/$lesson': typeof LearnCourseLessonRoute
@@ -122,15 +146,18 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/create-course': typeof CreateCourseRoute
   '/discover': typeof DiscoverRoute
   '/my-courses': typeof MyCoursesRoute
   '/teach': typeof TeachRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/creators/$username': typeof CreatorsUsernameRoute
+  '/dashboard/earnings': typeof DashboardEarningsRoute
   '/games/$game': typeof GamesGameRoute
   '/categories/': typeof CategoriesIndexRoute
   '/courses/': typeof CoursesIndexRoute
   '/creators/': typeof CreatorsIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/games/': typeof GamesIndexRoute
   '/courses/$game/$slug': typeof CoursesGameSlugRoute
   '/learn/$course/$lesson': typeof LearnCourseLessonRoute
@@ -139,45 +166,54 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/create-course'
     | '/discover'
     | '/my-courses'
     | '/teach'
     | '/categories/$slug'
     | '/creators/$username'
+    | '/dashboard/earnings'
     | '/games/$game'
     | '/categories/'
     | '/courses/'
     | '/creators/'
+    | '/dashboard/'
     | '/games/'
     | '/courses/$game/$slug'
     | '/learn/$course/$lesson'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/create-course'
     | '/discover'
     | '/my-courses'
     | '/teach'
     | '/categories/$slug'
     | '/creators/$username'
+    | '/dashboard/earnings'
     | '/games/$game'
     | '/categories'
     | '/courses'
     | '/creators'
+    | '/dashboard'
     | '/games'
     | '/courses/$game/$slug'
     | '/learn/$course/$lesson'
   id:
     | '__root__'
     | '/'
+    | '/create-course'
     | '/discover'
     | '/my-courses'
     | '/teach'
     | '/categories/$slug'
     | '/creators/$username'
+    | '/dashboard/earnings'
     | '/games/$game'
     | '/categories/'
     | '/courses/'
     | '/creators/'
+    | '/dashboard/'
     | '/games/'
     | '/courses/$game/$slug'
     | '/learn/$course/$lesson'
@@ -185,15 +221,18 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CreateCourseRoute: typeof CreateCourseRoute
   DiscoverRoute: typeof DiscoverRoute
   MyCoursesRoute: typeof MyCoursesRoute
   TeachRoute: typeof TeachRoute
   CategoriesSlugRoute: typeof CategoriesSlugRoute
   CreatorsUsernameRoute: typeof CreatorsUsernameRoute
+  DashboardEarningsRoute: typeof DashboardEarningsRoute
   GamesGameRoute: typeof GamesGameRoute
   CategoriesIndexRoute: typeof CategoriesIndexRoute
   CoursesIndexRoute: typeof CoursesIndexRoute
   CreatorsIndexRoute: typeof CreatorsIndexRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
   GamesIndexRoute: typeof GamesIndexRoute
   CoursesGameSlugRoute: typeof CoursesGameSlugRoute
   LearnCourseLessonRoute: typeof LearnCourseLessonRoute
@@ -206,6 +245,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create-course': {
+      id: '/create-course'
+      path: '/create-course'
+      fullPath: '/create-course'
+      preLoaderRoute: typeof CreateCourseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/discover': {
@@ -264,6 +310,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreatorsUsernameRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/earnings': {
+      id: '/dashboard/earnings'
+      path: '/dashboard/earnings'
+      fullPath: '/dashboard/earnings'
+      preLoaderRoute: typeof DashboardEarningsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/games/': {
       id: '/games/'
       path: '/games'
@@ -297,15 +357,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CreateCourseRoute: CreateCourseRoute,
   DiscoverRoute: DiscoverRoute,
   MyCoursesRoute: MyCoursesRoute,
   TeachRoute: TeachRoute,
   CategoriesSlugRoute: CategoriesSlugRoute,
   CreatorsUsernameRoute: CreatorsUsernameRoute,
+  DashboardEarningsRoute: DashboardEarningsRoute,
   GamesGameRoute: GamesGameRoute,
   CategoriesIndexRoute: CategoriesIndexRoute,
   CoursesIndexRoute: CoursesIndexRoute,
   CreatorsIndexRoute: CreatorsIndexRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
   GamesIndexRoute: GamesIndexRoute,
   CoursesGameSlugRoute: CoursesGameSlugRoute,
   LearnCourseLessonRoute: LearnCourseLessonRoute,

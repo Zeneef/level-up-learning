@@ -1,76 +1,52 @@
+import { useEffect } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
-import { Btn, Card } from "@/components/ui";
-import { setSession } from "@/lib/session";
+
+import { LoginForm } from "@/components/auth/login-form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useSession } from "@/lib/session";
 
 export const Route = createFileRoute("/login")({
-  head: () => ({
-    meta: [
-      { title: "Log in to STARBOUND" },
-      {
-        name: "description",
-        content: "Log in to continue your gaming courses, track progress and manage your creator studio.",
-      },
-      { property: "og:title", content: "Log in to STARBOUND" },
-      { property: "og:description", content: "Pick up your courses where you left off." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
   component: LoginPage,
 });
 
-const field =
-  "mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm outline-none focus:border-primary";
-
 function LoginPage() {
+  const session = useSession();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
 
-  function submit(e: React.FormEvent) {
-    e.preventDefault();
-    const name = email.split("@")[0] || "Player";
-    setSession({
-      signedIn: true,
-      name: name.charAt(0).toUpperCase() + name.slice(1),
-      initials: name.slice(0, 2).toUpperCase(),
-    });
-    navigate({ to: "/dashboard" });
-  }
+  useEffect(() => {
+    if (session.signedIn) {
+      navigate({ to: "/dashboard" });
+    }
+  }, [session.signedIn, navigate]);
 
   return (
-    <main className="mx-auto flex max-w-md flex-col px-5 py-16 md:px-8 md:py-24">
-      <h1 className="font-sans text-3xl font-bold">Welcome back</h1>
-      <p className="mt-2 text-sm text-muted-foreground">
-        Log in to keep climbing. No account?{" "}
-        <Link to="/signup" className="text-primary">
-          Sign up free
-        </Link>
-        .
-      </p>
-
-      <Card className="mt-8">
-        <form onSubmit={submit} className="space-y-5">
-          <div>
-            <label className="text-sm font-medium">Email</label>
-            <input
-              className={field}
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Password</label>
-            <input className={field} type="password" required placeholder="••••••••" />
-          </div>
-          <Btn type="submit" className="w-full">
-            Log in
-          </Btn>
-        </form>
+    <div className="flex min-h-[80vh] items-center justify-center px-4">
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Sign in</CardTitle>
+          <CardDescription>
+            Pick up right where you left off.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <LoginForm />
+          <p className="text-center text-sm text-muted-foreground">
+            New here?{" "}
+            <Link
+              to="/signup"
+              className="font-medium text-primary underline-offset-4 hover:underline"
+            >
+              Create an account
+            </Link>
+          </p>
+        </CardContent>
       </Card>
-    </main>
+    </div>
   );
 }

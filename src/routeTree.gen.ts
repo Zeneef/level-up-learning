@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CreateCourseRouteImport } from './routes/create-course'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as LegalRouteImport } from './routes/legal'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MyCoursesRouteImport } from './routes/my-courses'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as TeachRouteImport } from './routes/teach'
 import { Route as CategoriesIndexRouteImport } from './routes/categories.index'
 import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
@@ -41,9 +44,24 @@ const DiscoverRoute = DiscoverRouteImport.update({
   path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MyCoursesRoute = MyCoursesRouteImport.update({
   id: '/my-courses',
   path: '/my-courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TeachRoute = TeachRouteImport.update({
@@ -111,7 +129,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/create-course': typeof CreateCourseRoute
   '/discover': typeof DiscoverRoute
+  '/legal': typeof LegalRoute
+  '/login': typeof LoginRoute
   '/my-courses': typeof MyCoursesRoute
+  '/signup': typeof SignupRoute
   '/teach': typeof TeachRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/creators/$username': typeof CreatorsUsernameRoute
@@ -129,7 +150,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/create-course': typeof CreateCourseRoute
   '/discover': typeof DiscoverRoute
+  '/legal': typeof LegalRoute
+  '/login': typeof LoginRoute
   '/my-courses': typeof MyCoursesRoute
+  '/signup': typeof SignupRoute
   '/teach': typeof TeachRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/creators/$username': typeof CreatorsUsernameRoute
@@ -148,7 +172,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/create-course': typeof CreateCourseRoute
   '/discover': typeof DiscoverRoute
+  '/legal': typeof LegalRoute
+  '/login': typeof LoginRoute
   '/my-courses': typeof MyCoursesRoute
+  '/signup': typeof SignupRoute
   '/teach': typeof TeachRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/creators/$username': typeof CreatorsUsernameRoute
@@ -168,7 +195,10 @@ export interface FileRouteTypes {
     | '/'
     | '/create-course'
     | '/discover'
+    | '/legal'
+    | '/login'
     | '/my-courses'
+    | '/signup'
     | '/teach'
     | '/categories/$slug'
     | '/creators/$username'
@@ -186,7 +216,10 @@ export interface FileRouteTypes {
     | '/'
     | '/create-course'
     | '/discover'
+    | '/legal'
+    | '/login'
     | '/my-courses'
+    | '/signup'
     | '/teach'
     | '/categories/$slug'
     | '/creators/$username'
@@ -204,7 +237,10 @@ export interface FileRouteTypes {
     | '/'
     | '/create-course'
     | '/discover'
+    | '/legal'
+    | '/login'
     | '/my-courses'
+    | '/signup'
     | '/teach'
     | '/categories/$slug'
     | '/creators/$username'
@@ -223,7 +259,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreateCourseRoute: typeof CreateCourseRoute
   DiscoverRoute: typeof DiscoverRoute
+  LegalRoute: typeof LegalRoute
+  LoginRoute: typeof LoginRoute
   MyCoursesRoute: typeof MyCoursesRoute
+  SignupRoute: typeof SignupRoute
   TeachRoute: typeof TeachRoute
   CategoriesSlugRoute: typeof CategoriesSlugRoute
   CreatorsUsernameRoute: typeof CreatorsUsernameRoute
@@ -261,11 +300,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/my-courses': {
       id: '/my-courses'
       path: '/my-courses'
       fullPath: '/my-courses'
       preLoaderRoute: typeof MyCoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/teach': {
@@ -359,7 +419,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreateCourseRoute: CreateCourseRoute,
   DiscoverRoute: DiscoverRoute,
+  LegalRoute: LegalRoute,
+  LoginRoute: LoginRoute,
   MyCoursesRoute: MyCoursesRoute,
+  SignupRoute: SignupRoute,
   TeachRoute: TeachRoute,
   CategoriesSlugRoute: CategoriesSlugRoute,
   CreatorsUsernameRoute: CreatorsUsernameRoute,

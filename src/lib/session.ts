@@ -11,7 +11,7 @@ export type Session = {
   skill: string;
 };
 
-const guest: Session = {
+export const guest: Session = {
   signedIn: false,
   name: "Guest",
   initials: "AE",
@@ -45,6 +45,20 @@ export function setSession(patch: Partial<Session>) {
 
 export function useSession() {
   const [session, setState] = useState<Session>(guest);
+
+export function getSession(): Session {
+  return read();
+}
+
+export function resetSession() {
+  current = guest;
+  try {
+    window.localStorage.removeItem(KEY);
+  } catch {
+    /* ignore */
+  }
+  listeners.forEach((l) => l(current));
+}
 
   useEffect(() => {
     current = read();

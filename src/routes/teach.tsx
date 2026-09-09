@@ -30,8 +30,6 @@ const steps = [
   { n: "04", t: "Publish and earn", d: "You keep 82% of every sale. Payouts on the 1st and 15th." },
 ];
 
-export default function noop() {}
-
 function TeachPage() {
   return (
     <main>

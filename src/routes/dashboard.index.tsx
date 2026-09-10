@@ -71,7 +71,7 @@ function DashboardPage() {
                     <p className="text-xs text-muted-foreground">{gameOf(c).name}</p>
                     <Link
                       to="/learn/$course/$lesson"
-                      params={{ course: c.slug, lesson: lessons[idx].slug }}
+                      params={{ course: c.slug, lesson: lessons[idx]?.slug ?? "" }}
                       className="font-sans font-semibold hover:text-primary"
                     >
                       {c.title}

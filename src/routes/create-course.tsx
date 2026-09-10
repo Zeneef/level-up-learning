@@ -34,8 +34,8 @@ function CreateCoursePage() {
   const [step, setStep] = useState(0);
   const [title, setTitle] = useState("");
   const [short, setShort] = useState("");
-  const [game, setGame] = useState(games[0].slug);
-  const [category, setCategory] = useState(categories[0].slug);
+  const [game, setGame] = useState(games[0]?.slug ?? "");
+  const [category, setCategory] = useState(categories[0]?.slug ?? "");
   const [difficulty, setDifficulty] = useState("Intermediate");
   const [price, setPrice] = useState(29);
   const [free, setFree] = useState(false);

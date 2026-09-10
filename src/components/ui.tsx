@@ -50,7 +50,7 @@ export function BtnLink({
   return (
     <Link
       className={cx(btnBase, btnSizes[size], btnVariants[variant], className)}
-      {...(link as never)}
+      {...(link as ComponentProps<typeof Link>)}
     >
       {children}
     </Link>

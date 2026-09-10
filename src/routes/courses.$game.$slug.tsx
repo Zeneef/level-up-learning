@@ -145,7 +145,7 @@ function CoursePage() {
               </div>
               <BtnLink
                 to="/learn/$course/$lesson"
-                params={{ course: course.slug, lesson: course.modules[0].lessons[0].slug }}
+                params={{ course: course.slug, lesson: course.modules[0]?.lessons[0]?.slug ?? "" }}
                 size="lg"
                 className="w-full"
               >

@@ -100,9 +100,9 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardEarningsRoute = DashboardEarningsRouteImport.update({
-  id: '/earnings',
-  path: '/earnings',
-  getParentRoute: () => DashboardRoute,
+  id: '/dashboard/earnings',
+  path: '/dashboard/earnings',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const GamesIndexRoute = GamesIndexRouteImport.update({
   id: '/games/',
@@ -266,6 +266,7 @@ export interface RootRouteChildren {
   TeachRoute: typeof TeachRoute
   CategoriesSlugRoute: typeof CategoriesSlugRoute
   CreatorsUsernameRoute: typeof CreatorsUsernameRoute
+  DashboardEarningsRoute: typeof DashboardEarningsRoute
   GamesGameRoute: typeof GamesGameRoute
   CategoriesIndexRoute: typeof CategoriesIndexRoute
   CoursesIndexRoute: typeof CoursesIndexRoute
@@ -378,10 +379,10 @@ declare module '@tanstack/react-router' {
     }
     '/dashboard/earnings': {
       id: '/dashboard/earnings'
-      path: '/earnings'
+      path: '/dashboard/earnings'
       fullPath: '/dashboard/earnings'
       preLoaderRoute: typeof DashboardEarningsRouteImport
-      parentRoute: typeof DashboardRoute
+      parentRoute: typeof rootRouteImport
     }
     '/games/': {
       id: '/games/'
@@ -425,6 +426,7 @@ const rootRouteChildren: RootRouteChildren = {
   TeachRoute: TeachRoute,
   CategoriesSlugRoute: CategoriesSlugRoute,
   CreatorsUsernameRoute: CreatorsUsernameRoute,
+  DashboardEarningsRoute: DashboardEarningsRoute,
   GamesGameRoute: GamesGameRoute,
   CategoriesIndexRoute: CategoriesIndexRoute,
   CoursesIndexRoute: CoursesIndexRoute,

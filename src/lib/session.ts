@@ -43,9 +43,6 @@ export function setSession(patch: Partial<Session>) {
   listeners.forEach((l) => l(current));
 }
 
-export function useSession() {
-  const [session, setState] = useState<Session>(guest);
-
 export function getSession(): Session {
   return read();
 }
@@ -60,12 +57,17 @@ export function resetSession() {
   listeners.forEach((l) => l(current));
 }
 
+export function useSession() {
+  const [session, setState] = useState<Session>(guest);
+
   useEffect(() => {
     current = read();
     setState(current);
     const listener = (s: Session) => setState(s);
     listeners.add(listener);
-    return () => listeners.delete(listener);
+    return () => {
+      listeners.delete(listener);
+    };
   }, []);
 
   return session;

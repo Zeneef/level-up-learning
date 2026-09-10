@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { Star } from "lucide-react";
 
 export function cx(...parts: (string | false | null | undefined)[]) {

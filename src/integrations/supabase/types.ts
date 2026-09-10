@@ -14,7 +14,116 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      courses: {
+        Row: {
+          badge: string | null
+          category: string
+          created_at: string
+          creator_id: string | null
+          creator_name: string
+          difficulty: string
+          game_slug: string
+          hours: number
+          id: string
+          modules: Json
+          original_price: number | null
+          outcomes: Json
+          price: number
+          published: boolean
+          rating: number
+          reviews: number
+          short: string
+          slug: string
+          students: number
+          title: string
+          trending: number
+        }
+        Insert: {
+          badge?: string | null
+          category: string
+          created_at?: string
+          creator_id?: string | null
+          creator_name?: string
+          difficulty?: string
+          game_slug: string
+          hours?: number
+          id?: string
+          modules?: Json
+          original_price?: number | null
+          outcomes?: Json
+          price?: number
+          published?: boolean
+          rating?: number
+          reviews?: number
+          short?: string
+          slug: string
+          students?: number
+          title: string
+          trending?: number
+        }
+        Update: {
+          badge?: string | null
+          category?: string
+          created_at?: string
+          creator_id?: string | null
+          creator_name?: string
+          difficulty?: string
+          game_slug?: string
+          hours?: number
+          id?: string
+          modules?: Json
+          original_price?: number | null
+          outcomes?: Json
+          price?: number
+          published?: boolean
+          rating?: number
+          reviews?: number
+          short?: string
+          slug?: string
+          students?: number
+          title?: string
+          trending?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "courses_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          bio: string | null
+          created_at: string
+          display_name: string
+          games: Json
+          goal: string | null
+          id: string
+          skill: string | null
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          display_name?: string
+          games?: Json
+          goal?: string | null
+          id: string
+          skill?: string | null
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          display_name?: string
+          games?: Json
+          goal?: string | null
+          id?: string
+          skill?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

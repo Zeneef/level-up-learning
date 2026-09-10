@@ -72,7 +72,7 @@ function MyCoursesPage() {
           {list.map((c) => {
             const lessons = flatLessons(c);
             const done = Math.round(((c.progress ?? 0) / 100) * lessons.length);
-            const next = lessons[Math.min(done, lessons.length - 1)];
+            const next = lessons[Math.min(done, lessons.length - 1)]!;
             return (
               <Card key={c.slug} className="flex flex-col gap-5 md:flex-row md:items-center">
                 <img

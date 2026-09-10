@@ -49,7 +49,7 @@ function LearnPage() {
   const creator = creatorOf(course);
   const lessons = flatLessons(course);
   const index = lessons.findIndex((l) => l.slug === lessonSlug);
-  const lesson = lessons[index];
+  const lesson = lessons[index]!;
   const navigate = useNavigate();
 
   const [completed, setCompleted] = useState<string[]>(

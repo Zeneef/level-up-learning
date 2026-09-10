@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const session = useSession();
-  const primaryGame = games.find((g) => g.slug === session.games[0]) ?? games[0];
+  const primaryGame = games.find((g) => g.slug === session.games[0]) ?? games[0]!;
 
   const recommended = coursesData
     .filter((c) => c.gameSlug === primaryGame.slug)

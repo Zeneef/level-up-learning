@@ -13,11 +13,11 @@ import {
   lessonCount,
 } from "@/lib/data";
 
-type SearchParams = { q?: string };
+type SearchParams = { q: string };
 
 export const Route = createFileRoute("/courses/")({
   validateSearch: (search: Record<string, unknown>): SearchParams => ({
-    q: typeof search.q === "string" ? search.q : undefined,
+    q: typeof search["q"] === "string" ? (search["q"] as string) : "",
   }),
   head: () => ({
     meta: [
@@ -42,7 +42,7 @@ const sorts = ["Most popular", "Newest", "Top rated", "Price: low to high"] as c
 
 function CoursesPage() {
   const { q: initialQ } = Route.useSearch();
-  const [q, setQ] = useState(initialQ ?? "");
+  const [q, setQ] = useState(initialQ);
   const [game, setGame] = useState<string | null>(null);
   const [category, setCategory] = useState<string | null>(null);
   const [difficulty, setDifficulty] = useState<string | null>(null);
